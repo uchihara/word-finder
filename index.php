@@ -80,7 +80,7 @@
     </form>
     <ul id="results" data-role="listview" data-insert="true">
       <?php foreach ($results as $result) { ?>
-        <li class="result"><?= htmlspecialchars($found) ?></li>
+        <li class="result"><?= htmlspecialchars($result) ?></li>
       <?php } ?>
     </ul>
   </div>
