@@ -76,12 +76,12 @@
     </ul>
   </div>
   <script language="javascript">
-    $(document).ready(function() {
-      $("#clear-form").click(function(ev) {
+    $(function(){
+      $("#clear-form").on("click", function(ev) {
         $("#finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
         $.each($("#results li"), function() {$(this).show();});
       });
-      $("#filter-input").keyup(function(ev) {
+      $("#filter-input").on("keyup", function(ev) {
         var filters = $(this).val().split(" ").filter(function(v){return v!==""});
         var is_filtered = function(s, filters) {
           var found = false;
