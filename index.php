@@ -13,7 +13,7 @@
   if (!empty($_REQUEST["pattern"])) {
     $lines = file("./wordsEn.txt");
     var_dump(count($lines));
-    $founds = preg_grep($_REQUEST["pattern"], $lines);
+    $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
     var_dump($founds);
 ?>
     <ul id="results">
