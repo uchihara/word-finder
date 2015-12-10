@@ -69,7 +69,7 @@
       <div id="reset"><input id="clear-form" type="button" value="reset" data-mini="true"></div>
       <div id="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
-    <ul id="results" data-role="listview" data-insert="true">
+    <ul id="results" data-role="listview" data-insert="true" data-autodividers="true">
       <?php foreach ($results as $result) { ?>
         <li class="result"><a href="https://www.google.co.jp/search?q=define+<?= urlencode($result) ?>&cad=h" target=_blank><?= htmlspecialchars($result) ?></a></li>
       <?php } ?>
