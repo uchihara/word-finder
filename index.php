@@ -1,7 +1,3 @@
-<?php
-var_dump($_REQUEST);
-print "file_exists: " . file_exists("./wordsEn.txt");
-?>
 <html>
 <head>
 <title>word finder</title>
@@ -12,4 +8,17 @@ print "file_exists: " . file_exists("./wordsEn.txt");
 <div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1" "<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>">
 <input type="submit" value="find">
 </form>
+<?php
+  if (!empty($_REQUEST["pattern"])) {
+    $lines = file("./wordsEn.txt");
+    $founds = preg_grep($_REQUEST["pattern"], $lines);
+?>
+    <ul id="results">
+      <?php foreach ($founds as $found) { ?>
+      <li class="result"><?= htmlspecialchars($found) ?></li>
+      <?php } ?>
+    </ul>
+<?php
+  }
+?>
 </body>
