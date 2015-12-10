@@ -18,7 +18,7 @@
   }
 
   if (!empty($_REQUEST["pattern"])) {
-    $lines = file("./wordsEn.txt");
+    $lines = file("./words.txt");
     $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
 ?>
     <ul id="results">
