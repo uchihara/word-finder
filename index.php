@@ -1,17 +1,17 @@
 <html>
 <head>
 <title>word finder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
   div#container {
     margin: 0.5em;
-    width: 20em;
   }
   span.label {
     display: inline-block;
-    width: 5em;
+    width: 70px;
   }
   input[type='text'] {
-    width: 20em;
+    width: 250px;
   }
   div#submit {
     margin: 1em auto;
