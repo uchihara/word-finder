@@ -56,18 +56,18 @@
 <body>
   <div id="container">
     <form id="finder-form" action="./index.php" method="get">
-      <div id="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
-      <div id="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
+      <div id="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>" data-clear-btn="true" data-mini="true"></div>
+      <div id="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>" data-clear-btn="true" data-mini="true"></div>
       <div id="length"><label for="length">length:</label>
-        <select name="length">
+        <select name="length" data-mini="true">
           <?php for ($i=1; $i<=20; $i++) { ?>
             <option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>><?= $i ?></option>
           <?php } ?>
         </select>
       </div>
-      <div id="filters"><label for="filters">filters:</label><input id="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
-      <div id="reset"><input id="clear-form" type="button" value="reset"></div>
-      <div id="submit"><input type="submit" value="find"></div>
+      <div id="filters"><label for="filters">filters:</label><input id="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>" data-clear-btn="true" data-mini="true"></div>
+      <div id="reset"><input id="clear-form" type="button" value="reset" data-mini="true"></div>
+      <div id="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
     <ul id="results" data-role="listview" data-insert="true">
       <?php foreach ($results as $result) { ?>
