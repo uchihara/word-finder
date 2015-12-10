@@ -1,6 +1,6 @@
 <?php
   if (!empty($_REQUEST["pattern"])) {
-    $lines = file("./words.txt");
+    $lines = file("./data/words.txt");
     $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
     $results = [];
     foreach ($founds as $found) {
@@ -31,7 +31,7 @@
     $length = intval($_REQUEST["length"]);
     $filters = empty($_REQUEST["filters"]) ? [] : explode(" ", $_REQUEST["filters"]);
     $counts = parse_strings($strings);
-    $lines = file("./words.txt", FILE_IGNORE_NEW_LINES);
+    $lines = file("./data/words.txt", FILE_IGNORE_NEW_LINES);
     $results = [];
     foreach ($lines as $line) {
       if (strlen($line)==$length && is_match($line, $counts)) {
