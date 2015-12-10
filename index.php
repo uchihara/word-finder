@@ -11,8 +11,8 @@
 <?php
   function is_uniq($s) {
     $s1 = str_split($s);
-    $s1 = sort($s1);
-    $s2 = $s2;
+    sort($s1);
+    $s2 = $s1;
     $s2 = array_unique($s2);
     print "$s1 == $s2<br>";
     return $s1 == $s2;
