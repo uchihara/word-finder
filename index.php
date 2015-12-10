@@ -31,7 +31,7 @@
     $length = intval($_REQUEST["length"]);
     $filters = empty($_REQUEST["filters"]) ? [] : explode(" ", $_REQUEST["filters"]);
     $counts = parse_strings($strings);
-    $lines = file("./data/words.txt", FILE_IGNORE_NEW_LINES);
+    $lines = file("./data/words-$length.txt", FILE_IGNORE_NEW_LINES);
     $results = [];
     foreach ($lines as $line) {
       if (strlen($line)==$length && is_match($line, $counts)) {
