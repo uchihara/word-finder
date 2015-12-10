@@ -1,20 +1,10 @@
 <?php
-  function is_uniq($s) {
-    $s1 = str_split($s);
-    sort($s1);
-    $s2 = $s1;
-    $s2 = array_unique($s2);
-    return $s1 == $s2;
-  }
-
   if (!empty($_REQUEST["pattern"])) {
     $lines = file("./words.txt");
     $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
     $results = [];
     foreach ($founds as $found) {
-      if ($_REQUEST["uniq"]==false || is_uniq($found)) {
-        $results[] = $result;
-      }
+      $results[] = $result;
     }
   }
 
@@ -76,7 +66,6 @@
   <div id="container">
     <form id="finder-form" action="./index.php" method="get">
       <div id="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
-      <div id="uniq"><label for="uniq">uniq:</label><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
       <div id="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
       <div id="length"><label for="length">length:</label>
         <select name="length">
