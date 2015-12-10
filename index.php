@@ -84,7 +84,7 @@
       $("#filter-input").keyup(function(ev) {
         var filters = $(this).val().split(" ").filter(function(v){return v!==""});
         var is_filtered = function(s, filters) {
-          found = false;
+          var found = false;
           $.each(filters, function(idx, filter) {
             if (s.indexOf(filter) != -1) {
               found = true;
