@@ -75,7 +75,7 @@
         </select>
       </div>
       <div id="filters"><label for="filters">filters:</label><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
-      <div id="reset"><input type="button" value="reset"></div>
+      <div id="reset"><input id="clear-form" type="button" value="reset"></div>
       <div id="submit"><input type="submit" value="find"></div>
     </form>
     <ul id="results" data-role="listview" data-insert="true">
@@ -86,7 +86,7 @@
   </div>
   <script language="javascript">
     $(document).ready(function() {
-      $("#reset").click(function(ev) {
+      $("#clear-form").click(function(ev) {
         $("#finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
       });
     });
