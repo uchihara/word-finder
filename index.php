@@ -48,28 +48,28 @@
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <style type="text/css">
-    div#container {
+    div.container {
       margin: 0.5em;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <form id="finder-form" action="./index.php" method="get">
-      <div id="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>" data-clear-btn="true" data-mini="true"></div>
-      <div id="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>" data-clear-btn="true" data-mini="true"></div>
-      <div id="length"><label for="length">length:</label>
+  <div class="container">
+    <form class="finder-form" action="./index.php" method="get">
+      <div class="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>" data-clear-btn="true" data-mini="true"></div>
+      <div class="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>" data-clear-btn="true" data-mini="true"></div>
+      <div class="length"><label for="length">length:</label>
         <select name="length" data-mini="true">
           <?php for ($i=1; $i<=20; $i++) { ?>
             <option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>><?= $i ?></option>
           <?php } ?>
         </select>
       </div>
-      <div id="filters"><label for="filters">filters:</label><input id="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>" data-clear-btn="true" data-mini="true"></div>
-      <div id="reset"><input id="clear-form" type="button" value="reset" data-mini="true"></div>
-      <div id="submit"><input type="submit" value="find" data-mini="true"></div>
+      <div class="filters"><label for="filters">filters:</label><input class="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>" data-clear-btn="true" data-mini="true"></div>
+      <div class="reset"><input class="clear-form" type="button" value="reset" data-mini="true"></div>
+      <div class="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
-    <ul id="results" data-role="listview" data-inset="true" data-autodividers="true">
+    <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
       <?php foreach ($results as $result) { ?>
         <li class="result"><a href="https://www.google.co.jp/search?q=define+<?= urlencode($result) ?>&cad=h" target=_blank><?= htmlspecialchars($result) ?></a></li>
       <?php } ?>
@@ -79,10 +79,10 @@
     $(function(){
 
       var clear_form = function(self) {
-        $("#finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
-        $.each($("#results li"), function() {$(this).show();});
+        $(".finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+        $.each($(".results li"), function() {$(this).show();});
       };
-      $(document).on("click", "#clear-form", function(ev) {
+      $(document).on("click", ".clear-form", function(ev) {
         clear_form(this);
       });
 
@@ -97,7 +97,7 @@
           });
           return found;
         };
-        $.each($("#results li"), function(idx, val) {
+        $.each($(".results li"), function(idx, val) {
           if (filters.length>=0 && is_filtered($(this).contents()[0].textContent, filters)) {
             $(this).hide();
           } else {
@@ -105,7 +105,7 @@
           }
         });
       };
-      $(document).on("keyup", "#filter-input", function(ev) {
+      $(document).on("keyup", ".filter-input", function(ev) {
         filter_results(this);
       });
     });
