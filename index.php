@@ -5,6 +5,13 @@
 <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script language="javascript">
+$(document).ready(function() {
+  $("#reset").click(function(ev) {
+    $("#finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+  });
+});
+</script>
 <style type="text/css">
   div#container {
     margin: 0.5em;
@@ -13,7 +20,7 @@
 </head>
 <body>
 <div id="container">
-<form action="./index.php" method="get">
+<form id="finder-form" action="./index.php" method="get">
 <div id="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
 <div id="uniq"><label for="uniq">uniq:</label><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
 <div id="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
@@ -25,6 +32,7 @@
 </select>
 </div>
 <div id="filters"><label for="filters">filters:</label><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
+<div id="reset"><input type="button" value="reset"></div>
 <div id="submit"><input type="submit" value="find"></div>
 </form>
 <?php
