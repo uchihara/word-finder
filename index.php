@@ -40,7 +40,7 @@
     $lines = file("./words.txt");
     $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
 ?>
-    <ul id="results">
+    <ul id="results" data-role="listview" data-insert="true" data-filter="true">
       <?php foreach ($founds as $found) { ?>
         <?php if ($_REQUEST["uniq"]==false || is_uniq($found)) { ?>
           <li class="result"><?= htmlspecialchars($found) ?></li>
@@ -84,7 +84,7 @@
     $counts = parse_strings($strings);
     $lines = file("./words.txt", FILE_IGNORE_NEW_LINES);
 ?>
-    <ul id="results">
+    <ul id="results" data-role="listview" data-insert="true">
       <?php foreach ($lines as $line) { ?>
         <?php if (strlen($line)==$length && is_match($line, $counts) && !is_filtered($line, $filters)) { ?>
           <li class="result"><?= htmlspecialchars($line) ?></li>
