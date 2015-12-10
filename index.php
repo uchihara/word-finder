@@ -2,40 +2,29 @@
 <head>
 <title>word finder</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <style type="text/css">
   div#container {
     margin: 0.5em;
-  }
-  span.label {
-    display: inline-block;
-    width: 70px;
-  }
-  input[type='text'] {
-    width: 250px;
-  }
-  div#submit {
-    margin: 1em auto;
-    text-align: center;
-  }
-  div#submit input[type='submit'] {
-    width: 10em;
   }
 </style>
 </head>
 <body>
 <div id="container">
 <form action="./index.php" method="get">
-<div id="pattern"><span class="label">pattern:</span><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
-<div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
-<div id="strings"><span class="label">strings:</span><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
-<div id="length"><span class="label">length:</span>
+<div id="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
+<div id="uniq"><label for="uniq">uniq:</label><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
+<div id="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
+<div id="length"><label for="length">length:</label>
 <select name="length">
 <?php for ($i=1; $i<=20; $i++) { ?>
 <option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>><?= $i ?>
 <?php } ?>
 </select>
 </div>
-<div id="filters"><span class="label">filters:</span><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
+<div id="filters"><label for="filters">filters:</label><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
 <div id="submit"><input type="submit" value="find"></div>
 </form>
 <?php
