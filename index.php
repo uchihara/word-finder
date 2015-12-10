@@ -1,5 +1,6 @@
 <?php
 var_dump($_REQUEST);
+print "file_exists: " . file_exists("./wordsEn.txt");
 ?>
 <html>
 <head>
