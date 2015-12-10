@@ -77,12 +77,17 @@
   </div>
   <script language="javascript">
     $(function(){
-      $("#clear-form").on("click", function(ev) {
+
+      var clear_form = function(self) {
         $("#finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
         $.each($("#results li"), function() {$(this).show();});
+      };
+      $(document).on("click", "#clear-form", function(ev) {
+        clear_form(this);
       });
-      $("#filter-input").on("keyup", function(ev) {
-        var filters = $(this).val().split(" ").filter(function(v){return v!==""});
+
+      var filter_results = function(self) {
+        var filters = $(self).val().split(" ").filter(function(v){return v!==""});
         var is_filtered = function(s, filters) {
           var found = false;
           $.each(filters, function(idx, filter) {
@@ -99,6 +104,9 @@
             $(this).show();
           }
         });
+      };
+      $(document).on("keyup", "#filter-input", function(ev) {
+        filter_results(this);
       });
     });
   </script>
