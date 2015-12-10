@@ -71,7 +71,7 @@
     </form>
     <ul id="results" data-role="listview" data-insert="true">
       <?php foreach ($results as $result) { ?>
-        <li class="result"><?= htmlspecialchars($result) ?></li>
+        <li class="result"><a href="https://www.google.co.jp/search?q=define+<?= urlencode($result) ?>&cad=h" target=_blank><?= htmlspecialchars($result) ?></a></li>
       <?php } ?>
     </ul>
   </div>
