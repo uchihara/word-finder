@@ -26,15 +26,6 @@
     return true;
   }
 
-  function is_filtered($s, $filters) {
-    foreach ($filters as $filter) {
-      if (strpos($s, $filter) !== false) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
     $length = intval($_REQUEST["length"]);
@@ -43,7 +34,7 @@
     $lines = file("./words.txt", FILE_IGNORE_NEW_LINES);
     $results = [];
     foreach ($lines as $line) {
-      if (strlen($line)==$length && is_match($line, $counts) && !is_filtered($line, $filters)) {
+      if (strlen($line)==$length && is_match($line, $counts)) {
         $results[] = $line;
       }
     }
@@ -74,7 +65,7 @@
           <?php } ?>
         </select>
       </div>
-      <div id="filters"><label for="filters">filters:</label><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
+      <div id="filters"><label for="filters">filters:</label><input id="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
       <div id="reset"><input id="clear-form" type="button" value="reset"></div>
       <div id="submit"><input type="submit" value="find"></div>
     </form>
@@ -88,6 +79,26 @@
     $(document).ready(function() {
       $("#clear-form").click(function(ev) {
         $("#finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+        $.each($("#results li"), function() {$(this).show();});
+      });
+      $("#filter-input").keyup(function(ev) {
+        var filters = $(this).val().split(" ").filter(function(v){return v!==""});
+        var is_filtered = function(s, filters) {
+          found = false;
+          $.each(filters, function(idx, filter) {
+            if (s.indexOf(filter) != -1) {
+              found = true;
+            }
+          });
+          return found;
+        };
+        $.each($("#results li"), function(idx, val) {
+          if (filters.length>=0 && is_filtered($(this).contents()[0].textContent, filters)) {
+            $(this).hide();
+          } else {
+            $(this).show();
+          }
+        });
       });
     });
   </script>
