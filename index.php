@@ -12,9 +12,7 @@
   var_dump($_REQUEST);
   if (!empty($_REQUEST["pattern"])) {
     $lines = file("./wordsEn.txt");
-    var_dump(count($lines));
     $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
-    var_dump($founds);
 ?>
     <ul id="results">
       <?php foreach ($founds as $found) { ?>
