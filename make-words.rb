@@ -1,5 +1,16 @@
 #!/usr/bin/env ruby
 
+words = []
+(ARGV+["data/words.txt"]).each do |file|
+  open(file) do |f|
+    words += f.read.split("\n")
+  end
+end
+
+open("data/words.txt", "w") do |f|
+  f << words.sort.uniq.join("\n") + "\n"
+end
+
 open("data/words.txt") do |f|
   word_counts = Hash.new{|h,k|h[k]=[]}
   while s=f.gets
