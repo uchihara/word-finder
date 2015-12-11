@@ -52,7 +52,7 @@
     return true;
   }
 
-  function is_filterd($s, $filters) {
+  function is_filtered($s, $filters) {
     foreach ($filters as $filter) {
       if (strpos($s, $filter)) {
         return true;
