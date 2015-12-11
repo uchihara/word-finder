@@ -54,7 +54,7 @@
 
   function is_filterd($s, $filters) {
     foreach ($filters as $filter) {
-      if ($strpos($s, $filter)) {
+      if (strpos($s, $filter)) {
         return true;
       }
     }
