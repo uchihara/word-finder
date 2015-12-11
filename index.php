@@ -89,13 +89,9 @@
       var filter_results = function(self) {
         var filters = $(self).val().split(" ").filter(function(v){return v!==""});
         var is_filtered = function(s, filters) {
-          var found = false;
-          $.each(filters, function(idx, filter) {
-            if (s.indexOf(filter) != -1) {
-              found = true;
-            }
+          return filters.some(function(filter) {
+            return s.indexOf(filter) != -1;
           });
-          return found;
         };
         $.each($(".results li"), function(idx, val) {
           if (filters.length>=0 && is_filtered($(this).contents()[0].textContent, filters)) {
