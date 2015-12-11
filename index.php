@@ -10,8 +10,9 @@
 <div id="length"><span class="label">length:</span>
 <select name="length">
 <?php for ($i=1; $i<=20; $i++) { ?>
-<option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>>
+<option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>><?= $i ?>
 <?php } ?>
+</select>
 </div>
 <div id="filters"><span class="label">filters:</span><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
 <div id="submit"><input type="submit" value="find"></div>
