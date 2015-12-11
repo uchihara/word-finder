@@ -41,6 +41,7 @@ bp
 br
 bs
 bt
+bu
 bw
 by
 ca
@@ -107,6 +108,7 @@ et
 eu
 ev
 ex
+ey
 ez
 fa
 fb
@@ -465,6 +467,7 @@ xu
 xx
 ya
 ye
+ym
 yn
 yo
 yr
