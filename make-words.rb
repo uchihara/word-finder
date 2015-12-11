@@ -3,7 +3,7 @@
 words = []
 (ARGV+["data/words.txt"]).each do |file|
   open(file) do |f|
-    words += f.read.split("\n")
+    words += f.read.split("\n").grep(/\A[a-z]+\Z/).map(&:downcase)
   end
 end
 
