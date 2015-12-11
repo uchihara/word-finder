@@ -7,7 +7,12 @@
 <div id="pattern"><span class="label">pattern:</span><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
 <div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
 <div id="strings"><span class="label">strings:</span><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
-<div id="length"><span class="label">length:</span><input type="text" name="length" value="<?= htmlspecialchars($_REQUEST["length"]) ?>"></div>
+<div id="length"><span class="label">length:</span>
+<select name="length">
+<?php for ($i=1; $i<=20; $i++) { ?>
+<option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>>
+<?php } ?>
+</div>
 <div id="filters"><span class="label">filters:</span><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
 <div id="submit"><input type="submit" value="find"></div>
 </form>
