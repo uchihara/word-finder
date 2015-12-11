@@ -4,11 +4,11 @@
 </head>
 <body>
 <form action="./index.php" method="get">
-<div id="pattern"><span class="label">pattern:</span><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>">
-<div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>>
-<div id="strings"><span class="label">strings:</span><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>">
-<div id="length"><span class="label">length:</span><input type="text" name="length" value="<?= htmlspecialchars($_REQUEST["length"]) ?>">
-<input type="submit" value="find">
+<div id="pattern"><span class="label">pattern:</span><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
+<div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
+<div id="strings"><span class="label">strings:</span><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
+<div id="length"><span class="label">length:</span><input type="text" name="length" value="<?= htmlspecialchars($_REQUEST["length"]) ?>"></div>
+<div id="submit"><input type="submit" value="find"></div>
 </form>
 <?php
   function is_uniq($s) {
