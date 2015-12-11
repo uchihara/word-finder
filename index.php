@@ -8,6 +8,7 @@
 <div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
 <div id="strings"><span class="label">strings:</span><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>"></div>
 <div id="length"><span class="label">length:</span><input type="text" name="length" value="<?= htmlspecialchars($_REQUEST["length"]) ?>"></div>
+<div id="filters"><span class="label">filters:</span><input type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>"></div>
 <div id="submit"><input type="submit" value="find"></div>
 </form>
 <?php
@@ -51,15 +52,25 @@
     return true;
   }
 
+  function is_filterd($s, $filters) {
+    foreach ($filters as $filter) {
+      if ($strpos($s, $filter)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
     $length = intval($_REQUEST["length"]);
+    $filters = empty($_REQUEST["filters"]) ? null : explode(" ", $_REQUEST["filters"]);
     $counts = parse_strings($strings);
     $lines = file("./words.txt", FILE_IGNORE_NEW_LINES);
 ?>
     <ul id="results">
       <?php foreach ($lines as $line) { ?>
-        <?php if (strlen($line)==$length && is_match($line, $counts)) { ?>
+        <?php if (strlen($line)==$length && is_match($line, $counts) && !is_filtered($line, $filters)) { ?>
           <li class="result"><?= htmlspecialchars($line) ?></li>
         <?php } ?>
       <?php } ?>
