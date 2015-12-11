@@ -71,7 +71,7 @@
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
       <?php foreach ($results as $result) { ?>
-        <li class="result"><a href="https://www.google.co.jp/search?q=define+<?= urlencode($result) ?>&cad=h" target=_blank><?= htmlspecialchars($result) ?></a></li>
+        <li class="result" data-word="<?= htmlspecialchars($result) ?>"><a href="https://www.google.co.jp/search?q=define+<?= urlencode($result) ?>&cad=h" target=_blank><?= htmlspecialchars($result) ?></a></li>
       <?php } ?>
     </ul>
   </div>
@@ -89,12 +89,12 @@
       var filter_results = function(self) {
         var filters = $(self).val().split(" ").filter(function(v){return v!==""});
         var is_filtered = function(s, filters) {
-          return filters.some(function(filter) {
+          return s != undefined && filters.some(function(filter) {
             return s.indexOf(filter) != -1;
           });
         };
         $.each($(".results li"), function(idx, val) {
-          if (filters.length>=0 && is_filtered($(this).contents()[0].textContent, filters)) {
+          if (filters.length>=0 && is_filtered($(this).data("word"), filters)) {
             $(this).hide();
           } else {
             $(this).show();
