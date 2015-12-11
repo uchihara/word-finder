@@ -7857,6 +7857,7 @@ applied
 applier
 appliers
 applies
+appliqu
 applique
 appliqued
 appliqueing
