@@ -2,13 +2,28 @@
 <head>
 <title>word finder</title>
 <style type="text/css">
+  div#container {
+    margin: 0.5em;
+    width: 20em;
+  }
   span.label {
     display: inline-block;
     width: 5em;
   }
+  input[type='text'] {
+    width: 20em;
+  }
+  div#submit {
+    margin: 1em auto;
+    text-align: center;
+  }
+  div#submit input[type='submit'] {
+    width: 10em;
+  }
 </style>
 </head>
 <body>
+<div id="container">
 <form action="./index.php" method="get">
 <div id="pattern"><span class="label">pattern:</span><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>"></div>
 <div id="uniq"><span class="label">uniq:</span><input type="checkbox" name="uniq" value="1"<?= $_REQUEST["uniq"]==1 ? "checked" : "" ?>></div>
@@ -90,4 +105,5 @@
 <?php
   }
 ?>
+</div>
 </body>
