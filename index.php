@@ -1,6 +1,12 @@
 <html>
 <head>
 <title>word finder</title>
+<style type="text/css">
+  span.label {
+    display: inline-block;
+    width: 5em;
+  }
+</style>
 </head>
 <body>
 <form action="./index.php" method="get">
