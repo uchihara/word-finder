@@ -64,7 +64,7 @@
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
     $length = intval($_REQUEST["length"]);
-    $filters = empty($_REQUEST["filters"]) ? null : explode(" ", $_REQUEST["filters"]);
+    $filters = empty($_REQUEST["filters"]) ? [] : explode(" ", $_REQUEST["filters"]);
     $counts = parse_strings($strings);
     $lines = file("./words.txt", FILE_IGNORE_NEW_LINES);
 ?>
