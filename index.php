@@ -56,7 +56,6 @@
         </select>
       </div>
       <div class="filters"><label for="filters">filters:</label><input class="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>" data-clear-btn="true" data-mini="true"></div>
-      <div class="reset"><input class="clear-form" type="button" value="reset" data-mini="true"></div>
       <div class="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
@@ -67,14 +66,6 @@
   </div>
   <script language="javascript">
     $(function(){
-
-      var clear_form = function(self) {
-        $(".ui-page-active .finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
-        $.each($(".ui-page-active .results li.result"), function() {$(this).show();});
-      };
-      $(document).on("click", ".ui-page-active .clear-form", function(ev) {
-        clear_form(this);
-      });
 
       var filter_results = function(self) {
         var filters = $(self).val().split(" ").filter(function(v){return v!==""});
