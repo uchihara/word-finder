@@ -1,13 +1,4 @@
 <?php
-  if (!empty($_REQUEST["pattern"])) {
-    $lines = file("./data/words.txt");
-    $founds = preg_grep("/" . $_REQUEST["pattern"] . "/", $lines);
-    $results = [];
-    foreach ($founds as $found) {
-      $results[] = $result;
-    }
-  }
-
   function parse_strings($s) {
     $counts = array();
     foreach (str_split($s) as $c) {
@@ -56,7 +47,6 @@
 <body>
   <div class="container">
     <form class="finder-form" action="./index.php" method="get">
-      <div class="pattern"><label for="pattern">pattern:</label><input type="text" name="pattern" value="<?= htmlspecialchars($_REQUEST["pattern"]) ?>" data-clear-btn="true" data-mini="true"></div>
       <div class="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>" data-clear-btn="true" data-mini="true"></div>
       <div class="length"><label for="length">length:</label>
         <select name="length" data-mini="true">
