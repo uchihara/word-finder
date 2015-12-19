@@ -70,7 +70,7 @@
 
       var clear_form = function(self) {
         $(".ui-page-active .finder-form").find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
-        $.each($(".ui-page-active .results li"), function() {$(this).show();});
+        $.each($(".ui-page-active .results li.result"), function() {$(this).show();});
       };
       $(document).on("click", ".ui-page-active .clear-form", function(ev) {
         clear_form(this);
@@ -83,7 +83,7 @@
             return s.indexOf(filter) != -1;
           });
         };
-        $.each($(".ui-page-active .results li"), function(idx, val) {
+        $.each($(".ui-page-active .results li.result"), function(idx, val) {
           if (filters.length>=0 && is_filtered($(this).data("word"), filters)) {
             $(this).hide();
           } else {
