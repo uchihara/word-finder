@@ -75,7 +75,7 @@
           });
         };
         $.each($(".ui-page-active .results li.result"), function(idx, val) {
-          if (filters.length>=0 && is_filtered($(this).data("word"), filters)) {
+          if (filters.length>=0 && is_filtered($(this).data("word").toString(), filters)) {
             $(this).hide();
           } else {
             $(this).show();
