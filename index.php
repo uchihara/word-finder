@@ -42,6 +42,9 @@
     div.container {
       margin: 0.5em;
     }
+    .filters {
+      border-width: 0;
+    }
   </style>
 </head>
 <body>
@@ -55,7 +58,7 @@
           <?php } ?>
         </select>
       </div>
-      <div class="filters"><label for="filters">filters:</label><textarea class="filter-input" name="filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["filters"]) ?></textarea></div>
+      <div class="filters ui-input-text ui-input-has-clear"><label for="filters">filters:</label><textarea class="filter-input" name="filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["filters"]) ?></textarea><a href="#" tabindex="-1" aria-hidden="true" class="clear-filters ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" title="Clear text">Clear text</a></div>
       <div class="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
@@ -84,6 +87,10 @@
       };
       $(document).on("keyup", ".ui-page-active .filter-input", function(ev) {
         filter_results(this);
+      });
+      $(document).on("click", ".ui-page-active .clear-filters", function(ev) {
+        $(".ui-page-active .filter-input").val("");
+        filter_results($(".ui-page-active .filter-input"));
       });
     });
   </script>
