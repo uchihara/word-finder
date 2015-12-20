@@ -85,6 +85,11 @@
           }
         });
       };
+
+      filter_results($(".ui-page-active .filter-input"));
+      $(document).on("pagechange", function() {
+        filter_results($(".ui-page-active .filter-input"));
+      })
       $(document).on("keyup", ".ui-page-active .filter-input", function(ev) {
         filter_results(this);
       });
