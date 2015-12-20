@@ -55,7 +55,7 @@
           <?php } ?>
         </select>
       </div>
-      <div class="filters"><label for="filters">filters:</label><input class="filter-input" type="text" name="filters" value="<?= htmlspecialchars($_REQUEST["filters"]) ?>" data-clear-btn="true" data-mini="true"></div>
+      <div class="filters"><label for="filters">filters:</label><textarea class="filter-input" name="filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["filters"]) ?></textarea></div>
       <div class="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
