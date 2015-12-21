@@ -17,6 +17,28 @@
     return true;
   }
 
+  function any($array, callable $callback) {
+    $array = array_map($callback, $array);
+    return array_reduce($array, function ($a, $b) { return $a || $b; }, false);
+  }
+
+  function is_filtered($s, $filters) {
+    return any($filters, function($filter) use ($s) {
+      return strpos($s, $filter) !== false;
+    });
+  }
+
+  function filter_results($filters, $src) {
+    $dst = array();
+    foreach($src as $result) {
+      if (count($filters)>=0 && is_filtered($result, $filters)) {
+      } else {
+        $dst[] = $result;
+      }
+    }
+    return $dst;
+  }
+
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
     $lengths = $_REQUEST["lengths"];
@@ -31,6 +53,7 @@
         }
       }
     }
+    $results = filter_results($filters, $results);
     sort($results);
   }
 ?>
@@ -72,30 +95,8 @@
   </div>
   <script language="javascript">
     $(function(){
-
-      var filter_results = function(self) {
-        var filters = $(self).val().split(" ").filter(function(v){return v!==""});
-        var is_filtered = function(s, filters) {
-          return s != undefined && filters.some(function(filter) {
-            return s.indexOf(filter) != -1;
-          });
-        };
-        $.each($(".ui-page-active .results li.result"), function(idx, val) {
-          if (filters.length>=0 && is_filtered($(this).data("word").toString(), filters)) {
-            $(this).hide();
-          } else {
-            $(this).show();
-          }
-        });
-      };
-
-      filter_results($(".ui-page-active .filter-input"));
-      $(document).on("pageshow", function() {
-        filter_results($(".ui-page-active .filter-input"));
-      })
       $(document).on("click", ".ui-page-active .clear-filters", function(ev) {
         $(".ui-page-active .filter-input").val("");
-        filter_results($(".ui-page-active .filter-input"));
       });
     });
   </script>
