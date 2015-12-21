@@ -55,8 +55,8 @@
     <form class="finder-form" action="./index.php" method="get">
       <div class="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>" data-clear-btn="true" data-mini="true"></div>
       <div class="lengths"><label for="lengths[]">length:</label>
-        <select name="lengths[]" data-mini="true" data-native-menu="false" multiple>
-          <?php for ($i=1; $i<=20; $i++) { ?>
+        <select name="lengths[]" data-mini="false" data-native-menu="false" multiple>
+          <?php for ($i=1; $i<=8; $i++) { ?>
             <option value="<?= $i ?>"<?= in_array($i, $_REQUEST["lengths"]) ? " selected" : ""?>><?= $i ?></option>
           <?php } ?>
         </select>
