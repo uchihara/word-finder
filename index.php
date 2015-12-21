@@ -19,16 +19,19 @@
 
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
-    $length = intval($_REQUEST["length"]);
+    $lengths = $_REQUEST["lengths"];
     $filters = empty($_REQUEST["filters"]) ? [] : explode(" ", $_REQUEST["filters"]);
     $counts = parse_strings($strings);
-    $lines = file("./data/words-$length.txt", FILE_IGNORE_NEW_LINES);
     $results = [];
-    foreach ($lines as $line) {
-      if (strlen($line)==$length && is_match($line, $counts)) {
-        $results[] = $line;
+    foreach ($lengths as $length) {
+      $lines = file("./data/words-$length.txt", FILE_IGNORE_NEW_LINES);
+      foreach ($lines as $line) {
+        if (strlen($line)==$length && is_match($line, $counts)) {
+          $results[] = $line;
+        }
       }
     }
+    sort($results);
   }
 ?>
 <html>
@@ -51,10 +54,10 @@
   <div class="container">
     <form class="finder-form" action="./index.php" method="get">
       <div class="strings"><label for="strings">strings:</label><input type="text" name="strings" value="<?= htmlspecialchars($_REQUEST["strings"]) ?>" data-clear-btn="true" data-mini="true"></div>
-      <div class="length"><label for="length">length:</label>
-        <select name="length" data-mini="true">
+      <div class="lengths"><label for="lengths[]">length:</label>
+        <select name="lengths[]" data-mini="true" data-native-menu="false" multiple>
           <?php for ($i=1; $i<=20; $i++) { ?>
-            <option value="<?= $i ?>"<?= $_REQUEST["length"]==$i ? " selected" : ""?>><?= $i ?></option>
+            <option value="<?= $i ?>"<?= in_array($i, $_REQUEST["lengths"]) ? " selected" : ""?>><?= $i ?></option>
           <?php } ?>
         </select>
       </div>
