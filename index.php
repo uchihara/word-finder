@@ -39,10 +39,27 @@
     return $dst;
   }
 
+  function split_combination_filters($cfilters) {
+    if (!isset($cfilters)) return [];
+    $arr = preg_split("/\\s+/", $cfilters);
+    $filters = [];
+    foreach ($arr as $s) {
+      $first_char = substr($s, 0, 1);
+      for ($i = 1; $i < strlen($s); $i++) {
+        $c = substr($s, $i, 1);
+        $filters[] = $first_char . $c;
+        $filters[] = $c . $first_char;
+      }
+    }
+    return $filters;
+  }
+
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
     $lengths = $_REQUEST["lengths"];
     $filters = empty($_REQUEST["filters"]) ? [] : explode(" ", $_REQUEST["filters"]);
+    $combination_filters = split_combination_filters($_REQUEST["combination_filters"]);
+    $filters = array_unique(array_merge($filters, $combination_filters));
     $counts = parse_strings($strings);
     $results = [];
     foreach ($lengths as $length) {
@@ -68,7 +85,7 @@
     div.container {
       margin: 0.5em;
     }
-    .filters {
+    .filters, .combination-filters {
       border-width: 0;
     }
   </style>
@@ -85,6 +102,8 @@
         </select>
       </div>
       <div class="filters ui-input-text ui-input-has-clear"><label for="filters">filters:</label><textarea class="filter-input" name="filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["filters"]) ?></textarea><a href="#" tabindex="-1" aria-hidden="true" class="clear-filters ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" title="Clear text">Clear text</a></div>
+      <div class="combination-filters ui-input-text ui-input-has-clear"><label for="combination-filters">combination filters:</label><textarea class="combination-filter-input" name="combination_filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["combination_filters"]) ?></textarea><a href="#" tabindex="-1" aria-hidden="true" class="clear-combination-filters ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" title="Clear text">Clear text</a></div>
+      <div class="combined-filters"><label>combined filters:</label><textarea data-mini="true" readonly="readonly"><?= htmlspecialchars(implode(" ", $filters)) ?></textarea></div>
       <div class="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
@@ -97,6 +116,9 @@
     $(function(){
       $(document).on("click", ".ui-page-active .clear-filters", function(ev) {
         $(".ui-page-active .filter-input").val("");
+      });
+      $(document).on("click", ".ui-page-active .clear-combination-filters", function(ev) {
+        $(".ui-page-active .combination-filter-input").val("");
       });
     });
   </script>
