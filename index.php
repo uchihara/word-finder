@@ -56,6 +56,17 @@
     return $filters;
   }
 
+  function setup_params($keys) {
+    foreach ($keys as $key) {
+      $_REQUEST[$key] = isset($_REQUEST[$key]) ? strtolower($_REQUEST[$key]) : "";
+    }
+    $_REQUEST["lengths"] = isset($_REQUEST["lengths"]) ? $_REQUEST["lengths"] : [];
+  }
+
+  setup_params([ "strings", "filters", "combination_filters" ]);
+  $combined_filters = [];
+  $results = [];
+
   if (!empty($_REQUEST["strings"])) {
     $strings = $_REQUEST["strings"];
     $lengths = $_REQUEST["lengths"];
