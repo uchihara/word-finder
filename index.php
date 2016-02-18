@@ -59,7 +59,7 @@
     $lengths = $_REQUEST["lengths"];
     $filters = empty($_REQUEST["filters"]) ? [] : explode(" ", $_REQUEST["filters"]);
     $combination_filters = split_combination_filters($_REQUEST["combination_filters"]);
-    $filters = array_unique(array_merge($filters, $combination_filters));
+    $filters = array_merge($filters, $combination_filters);
     $counts = parse_strings($strings);
     $results = [];
     foreach ($lengths as $length) {
@@ -72,6 +72,8 @@
     }
     $results = filter_results($filters, $results);
     sort($results);
+    $combined_filters = $filters;
+    sort($combined_filters);
   }
 ?>
 <html>
@@ -103,7 +105,7 @@
       </div>
       <div class="filters ui-input-text ui-input-has-clear"><label for="filters">filters:</label><textarea class="filter-input" name="filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["filters"]) ?></textarea><a href="#" tabindex="-1" aria-hidden="true" class="clear-filters ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" title="Clear text">Clear text</a></div>
       <div class="combination-filters ui-input-text ui-input-has-clear"><label for="combination-filters">combination filters:</label><textarea class="combination-filter-input" name="combination_filters" data-clear-btn="true" data-mini="true"><?= htmlspecialchars($_REQUEST["combination_filters"]) ?></textarea><a href="#" tabindex="-1" aria-hidden="true" class="clear-combination-filters ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" title="Clear text">Clear text</a></div>
-      <div class="combined-filters"><label>combined filters:</label><textarea data-mini="true" readonly="readonly"><?= htmlspecialchars(implode(" ", $filters)) ?></textarea></div>
+      <div class="combined-filters"><label>combined filters:</label><textarea data-mini="true" readonly="readonly"><?= htmlspecialchars(implode(" ", $combined_filters)) ?></textarea></div>
       <div class="submit"><input type="submit" value="find" data-mini="true"></div>
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
