@@ -73,7 +73,14 @@
     $results = filter_results($filters, $results);
     sort($results);
     $combined_filters = $filters;
-    sort($combined_filters);
+    for ($i = 0; $i < count($combined_filters); $i++) {
+      for ($r = count($combined_filters)-1; $r > $i; $r--) {
+        if (strstr($combined_filters[$r], "(dup)")) continue;
+        if ($combined_filters[$r] === $combined_filters[$i]) {
+          $combined_filters[$r] = $combined_filters[$i] . "(dup)";
+        }
+      }
+    }
   }
 ?>
 <html>
