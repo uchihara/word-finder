@@ -48,7 +48,9 @@
       for ($i = 1; $i < strlen($s); $i++) {
         $c = substr($s, $i, 1);
         $filters[] = $first_char . $c;
-        $filters[] = $c . $first_char;
+        if ($first_char !== $c) {
+          $filters[] = $c . $first_char;
+        }
       }
     }
     return $filters;
