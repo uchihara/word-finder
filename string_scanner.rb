@@ -1,5 +1,4 @@
 require 'set'
-require 'pry'
 require './matrix'
 
 class StringScanner
