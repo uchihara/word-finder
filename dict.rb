@@ -1,3 +1,5 @@
+require 'set'
+
 class Dict
   attr_reader :dict
 

@@ -1,5 +1,5 @@
 require 'set'
-require './matrix'
+require_relative 'matrix'
 
 class StringScanner
   def initialize matrix

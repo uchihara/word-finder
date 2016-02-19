@@ -1,5 +1,5 @@
 require 'stringio'
-require './cell'
+require_relative 'cell'
 
 class Matrix
   attr_reader :x_max, :y_max

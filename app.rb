@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require_relative 'models/word_finder'
 
 set :erb, :trim => '-'
 

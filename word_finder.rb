@@ -1,6 +1,7 @@
-require './matrix'
-require './string_scanner'
-require './dict'
+require 'set'
+require_relative 'matrix'
+require_relative 'string_scanner'
+require_relative 'dict'
 
 class WordFinder
   def initialize matrix, lengths, use_dict
