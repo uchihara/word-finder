@@ -29,7 +29,7 @@
     </form>
     <ul class="results" data-role="listview" data-inset="true" data-autodividers="true">
       <%- results.each do |result| -%>
-        <li class="result" data-word="<%= result %>"><a href="https://www.google.co.jp/search?q=define+<%= url_encode(result) %>&cad=h" target=_blank><%= result %></a></li>
+        <li class="result" data-word="<%= result %>"><a href="https://www.google.co.jp/search?q=define+<%= ERB::Util.url_encode(result) %>&cad=h" target=_blank><%= result %></a></li>
       <%- end -%>
     </ul>
   </div>
