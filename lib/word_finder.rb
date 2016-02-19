@@ -4,8 +4,8 @@ require_relative 'word_finder/string_walker'
 require_relative 'word_finder/dict'
 
 class WordFinder
-  def initialize matrix, lengths, use_dict
-    @matrix = Matrix.new matrix
+  def initialize fields, lengths, use_dict
+    @matrix = Matrix.new fields
     @lengths = lengths
     @use_dict = use_dict
   end
