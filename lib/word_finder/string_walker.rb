@@ -7,31 +7,32 @@ class StringWalker
   end
 
   def scan length, x=0, y=0
-    strings = Set.new
-    walk x, y, [], length, strings
-    strings
+    found_words = Set.new
+    walk x, y, [], length, found_words
+    found_words
   end
 
   private
-  def walk x, y, string, length, strings
+  def walk x, y, footprints, length, found_words
     raise "invalid length: #{length}" if length <= 0
-    raise "invalid string: #{string}" if string.length > length
+    raise "invalid footprints: #{footprints}" if footprints.length > length
     raise "invalid pos, x: #{x}, y: #{y}" unless @matrix.exists?(x, y)
     raise "invalid mark, x: #{x}, y: #{y}" if @matrix.at(x, y).marked?
 
     @matrix.at(x, y).mark!
-    string_ = string + [@matrix.at(x, y).char]
-    if string_.length == length
-      strings << string_.join
+    footprints.push @matrix.at(x, y).char
+    if footprints.length == length
+      found_words << footprints.join
     else
       [-1, 0, 1].each do |dx|
         [-1, 0, 1].each do |dy|
           if @matrix.exists?(x+dx, y+dy) && !@matrix.at(x+dx, y+dy).marked?
-            walk x+dx, y+dy, string_, length, strings
+            walk x+dx, y+dy, footprints, length, found_words
           end
         end
       end
     end
+    footprints.pop
     @matrix.at(x, y).unmark!
   end
 end
