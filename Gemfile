@@ -6,4 +6,6 @@ gem 'sinatra-contrib'
 
 group :test do
   gem 'minitest'
+  gem 'guard'
+  gem 'guard-minitest'
 end
