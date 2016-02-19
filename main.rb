@@ -2,13 +2,14 @@ require './matrix'
 require './string_scanner'
 require './dict'
 
-lengths = [ 5, 6 ]
-matrix = Matrix.new [
-  %w[ p e a c ],
-  %w[ o e m h ],
-  %w[ r g e n ],
-  %w[ a n l o ],
-]
+def usage
+  puts "#{$0} <length[,length...]> <row1,row2...>"
+  exit 1
+end
+usage if ARGV.length != 2
+
+lengths = ARGV[0].split(/,/).map(&:to_i)
+matrix = Matrix.new ARGV[1].split(/,/).map{|row|row.split(//)}
 scanner = StringScanner.new matrix
 results = Set.new
 (0...matrix.x_max).each do |x|
@@ -20,5 +21,5 @@ results = Set.new
     end
   end
 end
-pp results.sort
+puts results.sort.to_a
 
