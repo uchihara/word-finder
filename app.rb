@@ -9,6 +9,11 @@ get '/' do
   matrix = texts.split(/,/).map{|row|row.split(//)}
   lengths = (params['lengths'] || []).map(&:to_i)
   nouse_dict = params['nouse_dict']=='1'
-  results = []
+  if texts && !lengths.empty?
+    finder = WordFinder.new matrix, lengths, !nouse_dict
+    results = finder.find_words
+  else
+    results = []
+  end
   erb :index, locals: { texts: texts, lengths: lengths, nouse_dict: nouse_dict, results: results }
 end
