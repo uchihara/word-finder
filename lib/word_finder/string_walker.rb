@@ -7,9 +7,7 @@ class StringWalker
   end
 
   def scan length, x=0, y=0
-    found_words = Set.new
-    walk x, y, [], length, found_words
-    found_words
+    walk x, y, [], length, Set.new
   end
 
   private
@@ -34,6 +32,7 @@ class StringWalker
     end
     footprints.pop
     @matrix.at(x, y).unmark!
+    found_words
   end
 end
 
