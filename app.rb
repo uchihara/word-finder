@@ -6,7 +6,7 @@ set :erb, :trim => '-'
 
 get '/' do
   texts = params['texts'] || ''
-  matrix = texts.split(/,/).map{|row|row.split(//)}
+  matrix = texts.strip.gsub(/\r/, "").split(/\n+/).map{|row|row.split(//)}
   lengths = (params['lengths'] || []).map(&:to_i)
   nouse_dict = params['nouse_dict']=='1'
   if texts && !lengths.empty?
