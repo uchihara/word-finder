@@ -1,7 +1,7 @@
 require 'set'
 require_relative 'matrix'
 
-class StringScanner
+class StringWalker
   def initialize matrix
     @matrix = matrix
   end
@@ -38,20 +38,20 @@ end
 
 if __FILE__ == $0
 #  matrix = Matrix.new [ %w[ a b ], %w[ c d ] ]
-#  scanner = StringScanner.new matrix
+#  scanner = StringWalker.new matrix
 #  pp matrix
 #  pp scanner.scan 1
 #  pp scanner.scan 2
 #  pp scanner.scan 3
 #  matrix = Matrix.new [ %w[ a b c ], %w[ d e f ] ]
-#  scanner = StringScanner.new matrix
+#  scanner = StringWalker.new matrix
 #  pp matrix
 #  pp scanner.scan 1
 #  pp scanner.scan 2
 #  pp scanner.scan 3
 #  pp scanner.scan 4
 #  matrix = Matrix.new [ %w[ a b c ], %w[ d e f ], %w[ g h i ] ]
-#  scanner = StringScanner.new matrix
+#  scanner = StringWalker.new matrix
 #  pp matrix
 #  pp scanner.scan 1
 #  pp scanner.scan 2
@@ -63,7 +63,7 @@ if __FILE__ == $0
 #  pp scanner.scan 8
 #  pp scanner.scan 3, 1, 1
   matrix = Matrix.new [ %w[ c o ], %w[ o l ] ]
-  scanner = StringScanner.new matrix
+  scanner = StringWalker.new matrix
   pp matrix
   pp scanner.scan 4, 1, 1
 end

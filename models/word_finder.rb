@@ -1,6 +1,6 @@
 require 'set'
 require_relative 'matrix'
-require_relative 'string_scanner'
+require_relative 'string_walker'
 require_relative 'dict'
 
 class WordFinder
@@ -11,7 +11,7 @@ class WordFinder
   end
 
   def find_words
-    scanner = StringScanner.new @matrix
+    scanner = StringWalker.new @matrix
     results = Set.new
     (0...@matrix.x_max).each do |x|
       (0...@matrix.y_max).each do |y|
