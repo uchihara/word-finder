@@ -35,35 +35,3 @@ class StringWalker
     found_words
   end
 end
-
-if __FILE__ == $0
-#  matrix = Matrix.new [ %w[ a b ], %w[ c d ] ]
-#  scanner = StringWalker.new matrix
-#  pp matrix
-#  pp scanner.scan 1
-#  pp scanner.scan 2
-#  pp scanner.scan 3
-#  matrix = Matrix.new [ %w[ a b c ], %w[ d e f ] ]
-#  scanner = StringWalker.new matrix
-#  pp matrix
-#  pp scanner.scan 1
-#  pp scanner.scan 2
-#  pp scanner.scan 3
-#  pp scanner.scan 4
-#  matrix = Matrix.new [ %w[ a b c ], %w[ d e f ], %w[ g h i ] ]
-#  scanner = StringWalker.new matrix
-#  pp matrix
-#  pp scanner.scan 1
-#  pp scanner.scan 2
-#  pp scanner.scan 3
-#  pp scanner.scan 4
-#  pp scanner.scan 5
-#  pp scanner.scan 6
-#  pp scanner.scan 7
-#  pp scanner.scan 8
-#  pp scanner.scan 3, 1, 1
-  matrix = Matrix.new [ %w[ c o ], %w[ o l ] ]
-  scanner = StringWalker.new matrix
-  pp matrix
-  pp scanner.scan 4, 1, 1
-end
