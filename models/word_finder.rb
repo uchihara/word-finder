@@ -20,6 +20,8 @@ class WordFinder
           if @use_dict
             dict = Dict.new(length)
             results.merge hits & dict.dict
+          else
+            results.merge hits
           end
         end
       end
