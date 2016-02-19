@@ -17,12 +17,13 @@ class WordFinder
       (0...@matrix.y_max).each do |y|
         @lengths.each do |length|
           hits = scanner.scan(length, x, y)
-          if @use_dict
-            dict = Dict.new(length)
-            results.merge hits & dict.dict
-          else
-            results.merge hits
-          end
+          results.merge(
+            if @use_dict
+              hits & Dict.new(length)
+            else
+              hits
+            end
+          )
         end
       end
     end
