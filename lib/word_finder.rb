@@ -1,7 +1,7 @@
 require 'set'
-require_relative 'matrix'
-require_relative 'string_walker'
-require_relative 'dict'
+require_relative 'word_finder/matrix'
+require_relative 'word_finder/string_walker'
+require_relative 'word_finder/dict'
 
 class WordFinder
   def initialize matrix, lengths, use_dict
