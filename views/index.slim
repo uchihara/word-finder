@@ -7,6 +7,21 @@ html
     script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"
     style type="text/css"
       | div.container { margin: 0.5em; } .texts { border-width: 0; }
+    script language="javascript"
+      | $(function() {
+      |   $(document).on("click", ".ui-page-active .clear-texts", function(ev) {
+      |     $(".ui-page-active .texts-input").val("");
+      |   });
+      |   $(document).on("click", ".ui-page-active input[type='submit']", function(ev) {
+      |     if ($(".ui-page-active input[name='nouse_dict']").is(":checked") && $(".ui-page-active input[name='filtering_pattern']").val() == "") {
+      |       var confirmed = window.confirm("Are you sure?");
+      |       if (confirmed != true) {
+      |         console.log("prevent");
+      |         ev.preventDefault();
+      |       }
+      |     }
+      |   });
+      | });
   body
     .container
       form.finder-form action="/" method="get"
@@ -32,5 +47,3 @@ html
         - results.each do |result|
           li.result data-word="#{ result }"
             a href="https://www.google.co.jp/search?q=#{ ERB::Util.url_encode(result) + "+" + ERB::Util.url_encode("意味") }&cad=h" target="_blank" = result
-    script language="javascript"
-      |  $(function(){ $(document).on("click", ".ui-page-active .clear-texts", function(ev) { $(".ui-page-active .texts-input").val(""); }); });
