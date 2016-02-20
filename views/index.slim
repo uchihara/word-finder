@@ -23,6 +23,9 @@ html
               option value="#{n}" selected=("selected" if lengths.include?(n)) = n
         label
           input type="checkbox" name="nouse_dict" value="1" checked=("checked" if nouse_dict) no use dictionary
+        .texts.ui-input-text.ui-input-has-clear
+          label for="filtering-pattern" filtering pattern:
+          input type="text" name="filtering_pattern" data-clear-btn="true" data-mini="true" value=filtering_pattern
         .submit
           input type="submit" value="find" data-mini="true"
       ul.results data-role="listview" data-inset="true" data-autodividers="true"
