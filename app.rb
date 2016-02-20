@@ -15,5 +15,5 @@ get '/' do
   else
     results = []
   end
-  erb :index, locals: { texts: texts, lengths: lengths, nouse_dict: nouse_dict, results: results }
+  slim :index, locals: { texts: texts, lengths: lengths, nouse_dict: nouse_dict, results: results }
 end

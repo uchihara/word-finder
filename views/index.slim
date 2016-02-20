@@ -1,0 +1,33 @@
+html
+  head
+    title word finder
+    meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"
+    link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    script src="//code.jquery.com/jquery-2.1.4.min.js"
+    script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"
+    style type="text/css"
+      | div.container { margin: 0.5em; } .texts { border-width: 0; }
+  body
+    .container
+      form.finder-form action="/" method="get"
+        .texts.ui-input-text.ui-input-has-clear
+          label for="texts" texts:
+          textarea.texts-input name="texts" data-clear-btn="true" data-mini="true"
+            = texts
+          a.clear-texts.ui-input-clear.ui-btn.ui-icon-delete.ui-btn-icon-notext.ui-corner-all href="#" tabindex="-1" aria-hidden="true" title="Clear text"
+            | Clear text
+        .lengths
+          label for="lengths[]" length:
+          select name="lengths[]" data-mini="false" data-native-menu="false" multiple="multiple"
+            - (1..8).each do |n|
+              option value="#{n}" selected=("selected" if lengths.include?(n)) = n
+        label
+          input type="checkbox" name="nouse_dict" value="1" checked="#{"checked" if nouse_dict }" no use dictionary
+        .submit
+          input type="submit" value="find" data-mini="true"
+      ul.results data-role="listview" data-inset="true" data-autodividers="true"
+        - results.each do |result|
+          li.result data-word="#{ result }"
+            a href="https://www.google.co.jp/search?q=#{ ERB::Util.url_encode(result) + "+" + ERB::Util.url_encode("意味") }&cad=h" target="_blank" = result
+    script language="javascript"
+      |  $(function(){ $(document).on("click", ".ui-page-active .clear-texts", function(ev) { $(".ui-page-active .texts-input").val(""); }); });
