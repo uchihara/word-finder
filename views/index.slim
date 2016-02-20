@@ -22,7 +22,7 @@ html
             - (1..8).each do |n|
               option value="#{n}" selected=("selected" if lengths.include?(n)) = n
         label
-          input type="checkbox" name="nouse_dict" value="1" checked="#{"checked" if nouse_dict }" no use dictionary
+          input type="checkbox" name="nouse_dict" value="1" checked=("checked" if nouse_dict) no use dictionary
         .submit
           input type="submit" value="find" data-mini="true"
       ul.results data-role="listview" data-inset="true" data-autodividers="true"
