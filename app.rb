@@ -14,7 +14,7 @@ get '/' do
     finder = WordFinder.new matrix, lengths, !nouse_dict
     results = finder.find_words
     if !filtering_pattern.empty?
-      results = results.grep(/\A#{filtering_pattern}\Z/)
+      results = results.grep(/\A#{filtering_pattern}\Z/i)
     end
   else
     results = []
